@@ -1,5 +1,5 @@
 #!/bin/sh
-npx --no commitlint --edit
+npx --no -- commitlint --edit
 
 commitMsgFile=$1
 commitMsg=$(cat "$commitMsgFile")
