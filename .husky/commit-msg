@@ -1,0 +1,25 @@
+#!/bin/sh
+npx --no commitlint --edit
+
+commitMsgFile=$1
+commitMsg=$(cat "$commitMsgFile")
+
+case "$commitMsg" in
+build*) icon="🏗️" ;;
+chore*) icon="🔨" ;;
+ci*) icon="🚚" ;;
+docs*) icon="📚" ;;
+feat*) icon="✨" ;;
+fix*) icon="🐛" ;;
+perf*) icon="⚡" ;;
+refactor*) icon="♻️" ;;
+revert*) icon="⏪" ;;
+style*) icon="🎨" ;;
+test*) icon="✅" ;;
+*) icon="" ;;
+esac
+
+# If an emoji was found, prepend it to the commit message and write it back to the file
+if [ -n "$icon" ]; then
+  echo "$icon $commitMsg" >"$commitMsgFile"
+fi
